@@ -7,25 +7,35 @@ const TABLE = 'tb_user';
 
 // 获取单条数据
 let getUser = function(condition) {
-    let columns = ' id AS userid, account, password, nickname, email, gender, avatar, signature, region, mobile, '
+    let columns = 'id AS userid, account, password, nickname, email, gender, avatar, signature, region, mobile, '
                 + 'memo, status, login_ip AS loginip, login_time AS logintime, create_time AS logintime ';
     let table   = 'tb_user';
 
     let conditionObject = _makeCondition(condition);
-    let sql = 'SELECT ' + columns + ' FROM ' + table + conditionObject.where + ' LIMIT 1';
+    if (conditionObject.where <= 0) {
+        return false;
+    }
+    let where = ' WHERE ' + conditionObject.where;
+    let sql = 'SELECT ' + columns + 'FROM ' + table + where + ' LIMIT 1';
     return defaultModel.query(sql, conditionObject.binds);
 }
 
 // 获取多条数据
 let getUsers = function(condition, sort = '', maxCount = '') {
-    let columns = ' id AS userid, account, password, nickname, email, gender, avatar, signature, region, mobile, '
+    let columns = 'id AS userid, account, password, nickname, email, gender, avatar, signature, region, mobile, '
                 + 'memo, status, login_ip AS loginip, login_time AS logintime, create_time AS logintime ';
     let table   = 'tb_user';
 
-    var order = '';
-    var limit = '';
+    let order = '';
+    let limit = '';
 
     let conditionObject = _makeCondition(condition, sort);
+
+    if (conditionObject.where <= 0) {
+        return false;
+    }
+
+    let where = ' WHERE ' + conditionObject.where;
 
     if (conditionObject.sort) {
         order = ' ORDER BY ' + conditionObject.sort;
@@ -35,7 +45,9 @@ let getUsers = function(condition, sort = '', maxCount = '') {
         limit = ' LIMIT ' + maxCount;
     }
 
-    let sql = 'SELECT ' + columns + ' FROM ' + table + conditionObject.where + order + limit;
+    let sql = 'SELECT ' + columns + 'FROM ' + table + where + order + limit;
+    console.log(sql)
+    console.log(conditionObject.binds)
     return defaultModel.query(sql, conditionObject.binds);
 }
 
@@ -91,8 +103,8 @@ let deleteUser = function(userId) {
         return false;
     }
 
-    let sql = 'DELETE FROM ' + TABLE + ' WHERE id = ?';
-    return defaultModel.query(sql, userId);
+    let sql = 'DELETE FROM ' + TABLE + ' WHERE id = :id';
+    return defaultModel.query(sql, {id: userId});
 }
 
 // 构造bind参数

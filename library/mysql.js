@@ -15,6 +15,15 @@ let query = (sql, binds) => {
             if (error) {
                 resolve(error)
             } else {
+                connection.config.queryFormat = function (query, values) {
+                    if (!values) return query;
+                    return query.replace(/\:(\w+)/g, function (txt, key) {
+                        if (values.hasOwnProperty(key)) {
+                            return this.escape(values[key]);
+                        }
+                        return txt;
+                    }.bind(this));
+                };
                 connection.query(sql, binds, (error, rows) => {
                     if (error) {
                         resolve(error)
@@ -28,6 +37,9 @@ let query = (sql, binds) => {
     })
 }
 
+
+
+
 module.exports = {
-  query
+    query
 }

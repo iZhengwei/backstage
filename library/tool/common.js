@@ -4,8 +4,8 @@ let path = require('path')
   , fs   = require('fs')
   , ini  = require('ini');
 
-let filePath = path.resolve(__dirname, '../../application/configs/application.ini');
-let config = ini.parse(fs.readFileSync(filePath, 'utf-8'));
+let _filePath = path.resolve(__dirname, '../../application/configs/application.ini');
+let config = ini.parse(fs.readFileSync(_filePath, 'utf-8'));
 
 let jsonSplit2String = function (json, joinString, splitString) {
 
@@ -21,6 +21,6 @@ let jsonSplit2String = function (json, joinString, splitString) {
 }
 
 module.exports = {
-  config,
-  jsonSplit2String
+    config,
+    jsonSplit2String
 }
