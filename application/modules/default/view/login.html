@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>后台管理系统</title>
+<link href="css/main.css" rel="stylesheet" type="text/css" />
+<!--[if IE 8]><link href="css/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!--[if IE 9]><link href="css/ie9.css" rel="stylesheet" type="text/css" /><![endif]-->
+<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/forms/jquery.uniform.min.js"></script>
+
+<script type="text/javascript" src="js/files/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/files/login.js"></script>
+
+</head>
+
+<body class="no-background">
+
+	<!-- Fixed top -->
+	<div id="top">
+		<div class="fixed">
+			<a href="/" title="" class="logo" style="font-size: 20px;color: #fff;">后台管理系统</a>
+		</div>
+	</div>
+	<!-- /fixed top -->
+
+
+    <!-- Login block -->
+    <div class="login">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <h6><i class="icon-user"></i>后台管理系统</h6>
+            </div>
+        </div>
+        <div class="well">
+            <form action="/" method="POST" class="row-fluid" id="login-form" >
+                <div class="control-group">
+                    <label class="control-label">账号</label>
+                    <div class="controls"><input class="span12" type="text" name="account" placeholder="账号" /></div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">密码</label>
+                    <div class="controls"><input class="span12" type="password" name="password" placeholder="密码" /></div>
+                </div>
+
+                <div class="login-btn"><input type="submit" value="登录" class="btn btn-danger btn-block" id="login-form-submit" /></div>
+            </form>
+        </div>
+    </div>
+    <!-- /login block -->
+
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="copyrights">&copy;  Power by iZhengwei.</div>
+	</div>
+	<!-- /footer -->
+
+</body>
+</html>
